@@ -13,5 +13,7 @@ export const INIT_PAGE = 1;
 export const ADD_TERM = "ADD_TERM";
 export const SEARCH_VIDEOS = "SEARCH_VIDEOS";
 export const ADD_FAVORITE = "ADD_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const CHANGE_SELECTED = "CHANGE_SELECTED";
 export const CHANGE_PAGE = "CHANGE_PAGE";
+export const CHANGE_CURSLIDE = "CHANGE_CURSLIDE";

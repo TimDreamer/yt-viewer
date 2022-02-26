@@ -3,8 +3,10 @@ import {
   ADD_TERM,
   SEARCH_VIDEOS,
   ADD_FAVORITE,
+  REMOVE_FAVORITE,
   CHANGE_SELECTED,
   CHANGE_PAGE,
+  CHANGE_CURSLIDE,
 } from "../config";
 
 export const addTerm = (term) => {
@@ -33,6 +35,13 @@ export const addFavorite = (idx) => {
   };
 };
 
+export const removeFavorite = (videoId) => {
+  return {
+    type: REMOVE_FAVORITE,
+    payload: videoId,
+  };
+};
+
 export const changePage = (toPage) => {
   return {
     type: CHANGE_PAGE,
@@ -44,5 +53,13 @@ export const changeSelected = (idx) => {
   return {
     type: CHANGE_SELECTED,
     payload: idx,
+  };
+};
+
+export const changeCurSlide = (toSlide) => {
+  console.log("newslide", toSlide);
+  return {
+    type: CHANGE_CURSLIDE,
+    payload: toSlide,
   };
 };

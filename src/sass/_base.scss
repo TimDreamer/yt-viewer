@@ -23,6 +23,11 @@ body {
   min-height: 100vh;
 }
 
+::selection {
+  background-color: $color-primary;
+  color: $color-grey-light-1;
+}
+
 .main {
   max-width: 80%;
   margin: 4vw auto;

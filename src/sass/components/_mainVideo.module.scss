@@ -38,6 +38,7 @@
 .favorite {
   background-color: transparent;
   border: none;
+  margin-top: 2rem;
 
   &__icon {
     width: 5rem;
@@ -45,6 +46,10 @@
     fill: transparent;
     stroke: $color-primary;
     transition: all 0.3s;
+  }
+
+  &__selected {
+    fill: $color-grad-1;
   }
 
   &:hover > &__icon {

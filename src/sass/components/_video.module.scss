@@ -2,23 +2,46 @@
 @import "../animations";
 
 .video {
-  border-bottom: 1px solid $color-grey-dark-2;
+  border-top: 1px solid $color-grey-dark-2;
   text-align: center;
+  position: relative;
   cursor: pointer;
 
-  padding-bottom: 2rem;
-  &:not(:first-child) {
-    padding-top: 2rem;
+  padding: 2rem 0;
+
+  &:last-child {
+    padding-bottom: 0;
   }
 
   &__title {
+    color: $color-primary;
+    background-image: linear-gradient(
+      to right bottom,
+      $color-grey-light-1,
+      $color-grey-light-3
+    );
+    border-radius: 2rem;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    font-weight: 500;
+    width: 80%;
+    box-shadow: 0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.3);
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.8rem;
-    transition: all 0.3s;
+    transition: all 0.5s;
+    z-index: 100;
   }
 
-  &:hover > &__title {
-    color: $color-primary;
-    font-size: 1.6rem;
+  &__thumbnail-box:hover > &__title {
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
   }
 
   &__thumbnail {
@@ -27,19 +50,20 @@
     border: none;
     overflow: hidden;
     box-shadow: 0.2rem 0.6rem 0.5rem rgba(0, 0, 0, 0.5);
-    transition: all 0.1s;
+    transition: all 0.5s;
+
+    &-box:hover > & {
+      opacity: 0.75;
+      animation: pulsate 1s infinite;
+    }
+
+    &-box:active > & {
+      transform: scale(0.99);
+      animation: none;
+    }
   }
 
   &__thumbnail img {
     display: block;
-  }
-
-  &:hover &__thumbnail {
-    animation: pulsate 1s infinite;
-  }
-
-  &:active {
-    transform: scale(0.99);
-    animation: none;
   }
 }

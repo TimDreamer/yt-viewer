@@ -9,12 +9,12 @@ class VideoList extends BaseView {
   render() {
     const _generateVideosMarkup = () => (
       <React.Fragment>
+        <Pagination />
         <ul className={style.results}>
           {this.props.searchVideos.map((video, idx) => (
-            <Video video={video} key={idx} />
+            <Video video={video} key={idx} index={idx} />
           ))}
         </ul>
-        <Pagination />
       </React.Fragment>
     );
 
@@ -30,9 +30,14 @@ class VideoList extends BaseView {
 
 const mapStateToProps = ({
   videos: { searchVideos },
-  misc: { video_per_page },
+  misc: { video_per_page, page },
 }) => {
-  return { searchVideos: searchVideos.slice(0, video_per_page) };
+  return {
+    searchVideos: searchVideos.slice(
+      (page - 1) * video_per_page,
+      page * video_per_page
+    ),
+  };
 };
 
 export default connect(mapStateToProps)(VideoList);

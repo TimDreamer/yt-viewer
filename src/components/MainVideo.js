@@ -1,15 +1,18 @@
 import React from "react";
 import BaseView from "./BaseView";
+import { addFavorite, removeFavorite } from "../actions";
 import { connect } from "react-redux";
 import { ReactComponent as HeartSvg } from "../imgs/SVG/heart.svg";
 import style from "../sass/components/_mainVideo.module.scss";
 
 class MainVideo extends BaseView {
   render() {
-    const { video } = this.props;
+    const { video, favorites, addFavorite, removeFavorite } = this.props;
+    const isFavorite = favorites.some(
+      (fav) => video.id.videoId === fav.id.videoId
+    );
     const videoSrc =
       video && `https://www.youtube.com/embed/${video.id.videoId}`;
-    console.log(video);
     return video ? (
       <div className={style["main"]}>
         <div className={style["video-box"]}>
@@ -27,7 +30,16 @@ class MainVideo extends BaseView {
             {video.snippet.description}
           </p>
           <button className={style.favorite}>
-            <HeartSvg className={style.favorite__icon} />
+            <HeartSvg
+              className={`${style.favorite__icon} ${
+                isFavorite ? style.favorite__selected : ""
+              }`}
+              onClick={() => {
+                isFavorite
+                  ? removeFavorite(video.id.videoId)
+                  : addFavorite(video);
+              }}
+            />
           </button>
         </div>
       </div>
@@ -37,8 +49,14 @@ class MainVideo extends BaseView {
   }
 }
 
-const mapStateToProps = ({ videos: { searchVideos }, misc: { selected } }) => ({
+const mapStateToProps = ({
+  videos: { searchVideos, favorites },
+  misc: { selected },
+}) => ({
   video: searchVideos[selected],
+  favorites,
 });
 
-export default connect(mapStateToProps)(MainVideo);
+export default connect(mapStateToProps, { addFavorite, removeFavorite })(
+  MainVideo
+);

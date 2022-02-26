@@ -1,7 +1,8 @@
 import React from "react";
 import BaseView from "./BaseView";
 import { connect } from "react-redux";
-import style from "../sass/components/slideWindow.module.scss";
+import { changeCurSlide, changeSelected } from "../actions";
+import style from "../sass/components/_slideWindow.module.scss";
 
 class SlideWindow extends BaseView {
   _generateSlidesMarkup = () => {
@@ -9,9 +10,11 @@ class SlideWindow extends BaseView {
       <div
         className={style.slide}
         key={idx}
-        style={{ transform: `translateX(${idx * 100}%)` }}
+        style={{
+          transform: `translateX(${(idx - this.props.curSlide) * 100}%)`,
+        }}
       >
-        <figure className={style.slide__image}>
+        <figure className={style.slide__img}>
           <img
             src={video.snippet.thumbnails.medium.url}
             alt="video thumbnail"
@@ -29,15 +32,36 @@ class SlideWindow extends BaseView {
     return Array.from({ length: len }).map((_, idx) => (
       <button
         className={`${style.dots__dot} ${
-          idx === 0 && style["dots__dot--active"]
+          idx === this.props.curSlide && style["dots__dot--active"]
         }`}
         key={idx}
       ></button>
     ));
   };
 
+  _change = (newSlide) => {
+    this.props.changeCurSlide(newSlide);
+    this.props.changeSelected(
+      (this.props.page - 1) * this.props.video_per_page + newSlide
+    );
+  };
+
+  prevSlide = () => {
+    const newSlide =
+      this.props.curSlide > 0
+        ? this.props.curSlide - 1
+        : this.props.videos.length - 1;
+    this._change(newSlide);
+  };
+  nextSlide = () => {
+    const newSlide =
+      this.props.curSlide < this.props.videos.length - 1
+        ? this.props.curSlide + 1
+        : 0;
+    this._change(newSlide);
+  };
+
   render() {
-    console.log(this.props.videos);
     return (
       <div className={style.slider}>
         {this.props.videos.length > 0
@@ -45,11 +69,13 @@ class SlideWindow extends BaseView {
           : this.renderLoading()}
         <button
           className={`${style.slider__btn} ${style["slider__btn--left"]}`}
+          onClick={this.prevSlide}
         >
           &larr;
         </button>
         <button
           className={`${style.slider__btn} ${style["slider__btn--right"]}`}
+          onClick={this.nextSlide}
         >
           &rarr;
         </button>
@@ -64,9 +90,17 @@ class SlideWindow extends BaseView {
 
 const mapStateToProps = ({
   videos: { searchVideos },
-  misc: { video_per_page },
+  misc: { video_per_page, curSlide, page },
 }) => ({
-  videos: searchVideos.slice(0, video_per_page),
+  videos: searchVideos.slice(
+    (page - 1) * video_per_page,
+    page * video_per_page
+  ),
+  curSlide,
+  page,
+  video_per_page,
 });
 
-export default connect(mapStateToProps)(SlideWindow);
+export default connect(mapStateToProps, { changeCurSlide, changeSelected })(
+  SlideWindow
+);
