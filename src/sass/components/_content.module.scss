@@ -1,3 +1,20 @@
+@import "../variables";
+
 .content {
   grid-column: content-start / content-end;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: linear-gradient(
+      176deg,
+      rgba($color-grey-dark-2, 0.9) 0%,
+      rgba($color-grey-dark-2, 0.9) 65%,
+      rgba($color-grey-light-2, 0.9) 65%
+    ),
+    url(../../imgs/mainViewBg.jpg);
+  background-size: cover;
+  background-position: center;
 }

@@ -21,3 +21,18 @@
     box-shadow: 0.2rem 0.6rem 0.5rem rgba(0, 0, 0, 0.5);
   }
 }
+
+@keyframes svgPulsate {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0.1rem 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0.2rem 0.4rem 0.3rem rgba(0, 0, 0, 0.3));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0.1rem 0.3rem 0.3rem rgba(0, 0, 0, 0.5));
+  }
+}

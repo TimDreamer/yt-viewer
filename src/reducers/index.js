@@ -36,7 +36,7 @@ const videoReducer = (
 const miscReducer = (
   state = {
     favorites: [],
-    selected: null,
+    selected: 0,
     page: INIT_PAGE,
     video_per_page: VIDEOS_PER_PAGE,
   },

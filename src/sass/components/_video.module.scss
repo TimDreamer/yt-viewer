@@ -22,6 +22,7 @@
   }
 
   &__thumbnail {
+    cursor: inherit;
     border-radius: 1rem;
     border: none;
     overflow: hidden;
@@ -35,5 +36,10 @@
 
   &:hover &__thumbnail {
     animation: pulsate 1s infinite;
+  }
+
+  &:active {
+    transform: scale(0.99);
+    animation: none;
   }
 }
