@@ -1,0 +1,13 @@
+@import "../variables";
+@import "../animations";
+.spinner {
+  margin: 5rem auto;
+  text-align: center;
+
+  &__icon {
+    height: 6rem;
+    width: 6rem;
+    fill: $color-primary;
+    animation: rotate 2s infinite linear;
+  }
+}

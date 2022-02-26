@@ -1,0 +1,37 @@
+@import "variables.scss";
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-image: $gradient;
+  background-color: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.main {
+  max-width: 80%;
+  margin: 4vw auto;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2rem 6rem 0.5rem rgba($color-grey-dark-2, 0.2);
+  overflow: hidden;
+
+  display: grid;
+  //   grid-template-rows: min-content;
+  grid-template-columns: [content-start] 3fr [content-end sidebar-start] 1fr [sidebar-end];
+}

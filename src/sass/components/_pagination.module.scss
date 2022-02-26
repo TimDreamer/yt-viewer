@@ -1,0 +1,34 @@
+@import "../variables";
+
+.pagination {
+  padding: 2rem 3.5rem 0 3.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn--inline {
+  color: $color-primary;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  background-color: $color-grey-light-3;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10rem;
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  span {
+    margin: 0 0.4rem;
+  }
+
+  &:hover {
+    color: $color-grad-2;
+    background-color: $color-grey-dark-3;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

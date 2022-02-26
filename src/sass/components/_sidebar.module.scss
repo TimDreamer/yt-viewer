@@ -1,0 +1,16 @@
+@import "../variables";
+
+.sidebar {
+  grid-column: sidebar-start / sidebar-end;
+  background-color: $color-grey-light-2;
+  padding: 3rem 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
