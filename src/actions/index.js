@@ -4,6 +4,7 @@ import {
   SEARCH_VIDEOS,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
+  CLEAR_FAVORITES,
   CHANGE_SELECTED,
   CHANGE_PAGE,
   CHANGE_CURSLIDE,
@@ -42,6 +43,12 @@ export const removeFavorite = (videoId) => {
   };
 };
 
+export const clearFavorites = () => {
+  return {
+    type: CLEAR_FAVORITES,
+  };
+};
+
 export const changePage = (toPage) => {
   return {
     type: CHANGE_PAGE,
@@ -49,10 +56,10 @@ export const changePage = (toPage) => {
   };
 };
 
-export const changeSelected = (idx) => {
+export const changeSelected = (video) => {
   return {
     type: CHANGE_SELECTED,
-    payload: idx,
+    payload: video,
   };
 };
 

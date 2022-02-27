@@ -4,6 +4,7 @@ import {
   SEARCH_VIDEOS,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
+  CLEAR_FAVORITES,
   CHANGE_SELECTED,
   CHANGE_PAGE,
   VIDEOS_PER_PAGE,
@@ -13,9 +14,14 @@ import {
 } from "../config";
 
 const videoReducer = (
-  state = { searchTerms: [], searchVideos: [], favorites: [] },
+  state = {
+    searchTerms: [],
+    searchVideos: JSON.parse(localStorage.getItem("favorites")) || [],
+    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+  },
   action
 ) => {
+  let newFavorites;
   switch (action.type) {
     case ADD_TERM:
       return {
@@ -31,16 +37,27 @@ const videoReducer = (
         searchVideos: action.payload,
       };
     case ADD_FAVORITE:
+      newFavorites = [...state.favorites, action.payload];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favorites: newFavorites,
       };
     case REMOVE_FAVORITE:
+      newFavorites = state.favorites.filter(
+        (fav) => fav.id.videoId !== action.payload
+      );
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
       return {
         ...state,
-        favorites: state.favorites.filter(
-          (fav) => fav.id.videoId !== action.payload
-        ),
+        favorites: newFavorites,
+      };
+    case CLEAR_FAVORITES:
+      newFavorites = [];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      return {
+        ...state,
+        favorites: newFavorites,
       };
     default:
       return state;
@@ -49,7 +66,7 @@ const videoReducer = (
 
 const miscReducer = (
   state = {
-    selected: 0,
+    selected: null,
     page: INIT_PAGE,
     video_per_page: VIDEOS_PER_PAGE,
     curSlide: 0,

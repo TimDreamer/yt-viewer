@@ -37,6 +37,6 @@ body {
   overflow: hidden;
 
   display: grid;
-  //   grid-template-rows: min-content;
+  grid-template-rows: min-content 130rem;
   grid-template-columns: [content-start] 3fr [content-end sidebar-start] 1fr [sidebar-end];
 }

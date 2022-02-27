@@ -41,9 +41,7 @@ class SlideWindow extends BaseView {
 
   _change = (newSlide) => {
     this.props.changeCurSlide(newSlide);
-    this.props.changeSelected(
-      (this.props.page - 1) * this.props.video_per_page + newSlide
-    );
+    this.props.changeSelected(this.props.videos[newSlide]);
   };
 
   prevSlide = () => {

@@ -2,7 +2,8 @@ import React from "react";
 import { useRef } from "react";
 import { connect } from "react-redux";
 import { searchVideos, addTerm } from "../actions";
-// import Dropbox from "./Dropbox";
+import FavoriteDropbox from "./FavoriteDropbox";
+import UserDropbox from "./UserDropbox";
 import logo from "../imgs/logo.png";
 import user from "../imgs/user.jpg";
 import style from "../sass/components/_header.module.scss";
@@ -39,6 +40,7 @@ const Header = (props) => {
         <div className={style["user-nav__icon-box"]}>
           <HeartSvg className={style["user-nav__icon"]} />
           <span className={style["user-nav__notification"]}>favorites</span>
+          <FavoriteDropbox />
         </div>
         <div className={style["user-nav__user"]}>
           <img
@@ -47,6 +49,7 @@ const Header = (props) => {
             alt="avatar"
           />
           <span className={style["user-nav__user-name"]}>Tim</span>
+          <UserDropbox />
         </div>
       </nav>
     </header>

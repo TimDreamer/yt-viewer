@@ -1,6 +1,6 @@
 import React from "react";
 import BaseView from "./BaseView";
-import { addFavorite, removeFavorite } from "../actions";
+import { addFavorite, removeFavorite, changeSelected } from "../actions";
 import { connect } from "react-redux";
 import { ReactComponent as HeartSvg } from "../imgs/SVG/heart.svg";
 import style from "../sass/components/_mainVideo.module.scss";
@@ -53,10 +53,12 @@ const mapStateToProps = ({
   videos: { searchVideos, favorites },
   misc: { selected },
 }) => ({
-  video: searchVideos[selected],
+  video: selected || searchVideos[0],
   favorites,
 });
 
-export default connect(mapStateToProps, { addFavorite, removeFavorite })(
-  MainVideo
-);
+export default connect(mapStateToProps, {
+  addFavorite,
+  removeFavorite,
+  changeSelected,
+})(MainVideo);
