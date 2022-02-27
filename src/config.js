@@ -11,6 +11,7 @@ export const INIT_PAGE = 1;
 ////////////////////////////////////////////
 // action type
 export const ADD_TERM = "ADD_TERM";
+export const REMOVE_TERM = "REMOVE_TERM";
 export const SEARCH_VIDEOS = "SEARCH_VIDEOS";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";

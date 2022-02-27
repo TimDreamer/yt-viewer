@@ -1,4 +1,5 @@
 @import "variables.scss";
+@import "./media";
 
 *,
 *::after,
@@ -11,6 +12,13 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1 rem = 9px, 9/16 = 56.25%
+  }
+  @include respond(tab-port) {
+    font-size: 50%; // 1 rem = 8px
+  }
 }
 
 body {
@@ -39,4 +47,8 @@ body {
   display: grid;
   grid-template-rows: min-content 130rem;
   grid-template-columns: [content-start] 3fr [content-end sidebar-start] 1fr [sidebar-end];
+
+  @include respond(tab-land) {
+    grid-template-columns: [content-start sidebar-start] 1fr [content-end sidebar-end];
+  }
 }

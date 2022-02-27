@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import {
   ADD_TERM,
+  REMOVE_TERM,
   SEARCH_VIDEOS,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
@@ -17,21 +18,33 @@ import {
 
 const videoReducer = (
   state = {
-    searchTerms: [],
+    searchTerms: JSON.parse(localStorage.getItem("terms")) || [],
     searchVideos: JSON.parse(localStorage.getItem("favorites")) || [],
     favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   },
   action
 ) => {
-  let newFavorites;
+  let newTerms, newFavorites;
   switch (action.type) {
     case ADD_TERM:
+      if (state.searchTerms.find((term) => term === action.payload))
+        return state;
+
+      newTerms = [
+        action.payload,
+        ...state.searchTerms.slice(0, MAX_SEARCH_TERMS - 1),
+      ];
+      localStorage.setItem("terms", JSON.stringify(newTerms));
       return {
         ...state,
-        searchTerms: [
-          action.payload,
-          ...state.searchTerms.slice(0, MAX_SEARCH_TERMS - 1),
-        ],
+        searchTerms: newTerms,
+      };
+    case REMOVE_TERM:
+      newTerms = state.searchTerms.filter((term) => term !== action.payload);
+      localStorage.setItem("terms", JSON.stringify(newTerms));
+      return {
+        ...state,
+        searchTerms: newTerms,
       };
     case SEARCH_VIDEOS:
       return {

@@ -1,6 +1,7 @@
 import yt from "../apis/yt";
 import {
   ADD_TERM,
+  REMOVE_TERM,
   SEARCH_VIDEOS,
   ADD_FAVORITE,
   REMOVE_FAVORITE,
@@ -15,6 +16,13 @@ import {
 export const addTerm = (term) => {
   return {
     type: ADD_TERM,
+    payload: term,
+  };
+};
+
+export const removeTerm = (term) => {
+  return {
+    type: REMOVE_TERM,
     payload: term,
   };
 };

@@ -20,6 +20,8 @@ class MainVideo extends BaseView {
             className={style["video-box__video"]}
             title={video.snippet.title}
             src={videoSrc}
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         </div>
         <div className={style["video-details"]}>

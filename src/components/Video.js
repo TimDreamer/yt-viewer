@@ -6,13 +6,18 @@ import style from "../sass/components/_video.module.scss";
 const Video = ({ video, changeSelected }) => {
   return (
     <div className={style.video}>
-      <div className={style["video__thumbnail-box"]}>
-        <button
-          className={style.video__thumbnail}
-          onClick={() => {
+      <div
+        className={style["video__thumbnail-box"]}
+        onClick={(e) => {
+          if (
+            e.target.closest("[class^='_video_video__thumbnail']") ||
+            e.target.closest("[class^='_video_video__title']")
+          ) {
             changeSelected(video);
-          }}
-        >
+          }
+        }}
+      >
+        <button className={style.video__thumbnail}>
           <img
             src={video.snippet.thumbnails.medium.url}
             alt="video thumbnail"

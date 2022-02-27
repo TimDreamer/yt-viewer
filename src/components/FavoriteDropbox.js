@@ -3,6 +3,7 @@ import Dropbox from "./Dropbox";
 import DeleteModal from "./Modal";
 import {
   clearFavorites,
+  removeFavorite,
   changeSelected,
   toggleFavoriteModal,
 } from "../actions";
@@ -21,8 +22,13 @@ class FavoriteDropbox extends Dropbox {
           <li
             className={style["favorite-dropbox__item"]}
             key={idx}
-            onClick={() => {
-              this.props.changeSelected(fav);
+            onClick={(e) => {
+              const className = e.target.className;
+              if (className.includes("delete")) {
+                this.props.removeFavorite(fav.id.videoId);
+              } else {
+                this.props.changeSelected(fav);
+              }
             }}
           >
             <figure className={style["favorite-dropbox__thumbnail-box"]}>
@@ -35,6 +41,9 @@ class FavoriteDropbox extends Dropbox {
             <p className={style["favorite-dropbox__caption"]}>
               {fav.snippet.title}
             </p>
+            <button className={style["favorite-dropbox__delete"]}>
+              Delete
+            </button>
           </li>
         ))}
         <button
@@ -102,6 +111,7 @@ const mapStateToProps = ({
 
 export default connect(mapStateToProps, {
   clearFavorites,
+  removeFavorite,
   changeSelected,
   toggleFavoriteModal,
 })(FavoriteDropbox);

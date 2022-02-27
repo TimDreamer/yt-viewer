@@ -1,3 +1,4 @@
+@import "../media";
 @import "../variables";
 @import "../animations";
 @import "../btn";
@@ -17,6 +18,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include respond(tab-port) {
+    flex-wrap: wrap;
+    height: 10rem;
+  }
 }
 
 .search {
@@ -25,6 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   &__input {
     font-family: inherit;
     font-size: inherit;
@@ -40,6 +47,12 @@
       outline: none;
       width: 100%;
       border: 3px solid $color-primary;
+    }
+
+    &:focus ~ .terms-dropbox {
+      opacity: 1;
+      visibility: visible;
+      height: auto;
     }
 
     &::-webkit-input-placeholder {
@@ -63,6 +76,11 @@
     width: 2rem;
     height: 2rem;
     fill: $color-primary;
+  }
+  @include respond(tab-port) {
+    flex: 0 0 80%;
+    order: 1;
+    margin: auto;
   }
 }
 
@@ -118,6 +136,7 @@
   }
 }
 
+.terms-dropbox,
 .favorite-dropbox,
 .user-dropbox {
   position: absolute;
@@ -135,6 +154,43 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.4s;
+}
+
+.terms-dropbox {
+  height: 0.1rem;
+  width: 80%;
+  right: 20%;
+  padding: 1rem 2rem;
+  cursor: default;
+
+  &:hover {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  &__item {
+    border-bottom: 1px solid $color-grey-light-3;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: $color-grey-dark-3;
+    }
+  }
+  &__term {
+    color: $color-grey-dark-2;
+  }
+  &__deleteBtn {
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
 }
 
 .favorite-dropbox {
@@ -157,8 +213,10 @@
     border-radius: 1rem;
     overflow: hidden;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    width: 100%;
   }
 
   &__item:hover &__thumbnail-box {
@@ -180,6 +238,11 @@
   &__thumbnail {
     width: 100%;
     display: block;
+  }
+
+  &__delete {
+    flex: 0 0 5%;
+    @include btn(rgba(red, 0.7), $color-grey-light-2);
   }
 
   &__clear {

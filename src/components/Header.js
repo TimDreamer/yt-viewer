@@ -7,6 +7,7 @@ import {
   toggleDashboardModal,
   toggleFavoriteModal,
 } from "../actions";
+import TermsDropbox from "./TermsDropbox";
 import FavoriteDropbox from "./FavoriteDropbox";
 import UserDropbox from "./UserDropbox";
 import Dashboard from "./Modal";
@@ -26,6 +27,8 @@ const Header = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const term = inputRef.current.value;
+    if (term.trim().length === 0) return;
+
     console.log(term);
     props.searchVideos(term);
     props.addTerm(term);
@@ -45,6 +48,7 @@ const Header = (props) => {
         <button className={style.search__button}>
           <SearchSvg className={style.search__icon} />
         </button>
+        <TermsDropbox input={inputRef} />
       </form>
       <nav className={style["user-nav"]}>
         <div className={style["user-nav__icon-box"]}>
