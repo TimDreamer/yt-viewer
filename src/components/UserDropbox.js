@@ -14,7 +14,11 @@ const svgs = [
 class UserDropbox extends Dropbox {
   _generateMarkup = (SVGs = svgs) =>
     SVGs.map((SVG, idx) => (
-      <li className={style["user-dropbox__item"]} key={idx}>
+      <li
+        className={style["user-dropbox__item"]}
+        key={idx}
+        onClick={() => (idx === 0 ? this.props.action() : undefined)}
+      >
         <a href="#" className={style["user-dropbox__link"]}>
           <SVG.icon className={style["user-dropbox__icon"]} />
           <span>{SVG.text}</span>

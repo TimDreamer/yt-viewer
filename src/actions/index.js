@@ -8,6 +8,8 @@ import {
   CHANGE_SELECTED,
   CHANGE_PAGE,
   CHANGE_CURSLIDE,
+  TOGGLE_DASHBOARD_MODAL,
+  TOGGLE_FAVORITE_MODAL,
 } from "../config";
 
 export const addTerm = (term) => {
@@ -68,5 +70,18 @@ export const changeCurSlide = (toSlide) => {
   return {
     type: CHANGE_CURSLIDE,
     payload: toSlide,
+  };
+};
+
+export const toggleDashboardModal = () => {
+  return {
+    type: TOGGLE_DASHBOARD_MODAL,
+  };
+};
+
+export const toggleFavoriteModal = () => {
+  console.log("yoyo");
+  return {
+    type: TOGGLE_FAVORITE_MODAL,
   };
 };

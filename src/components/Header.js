@@ -1,12 +1,22 @@
 import React from "react";
 import { useRef } from "react";
 import { connect } from "react-redux";
-import { searchVideos, addTerm } from "../actions";
+import {
+  searchVideos,
+  addTerm,
+  toggleDashboardModal,
+  toggleFavoriteModal,
+} from "../actions";
 import FavoriteDropbox from "./FavoriteDropbox";
 import UserDropbox from "./UserDropbox";
+import Dashboard from "./Modal";
 import logo from "../imgs/logo.png";
 import user from "../imgs/user.jpg";
+import photo1 from "../imgs/photo1.jpg";
+import photo2 from "../imgs/photo2.jpg";
+import dashboardBg from "../imgs/dashboard.jpg";
 import style from "../sass/components/_header.module.scss";
+import dashboardStyle from "../sass/components/_dashboard.module.scss";
 import { ReactComponent as SearchSvg } from "../imgs/SVG/magnifying-glass.svg";
 import { ReactComponent as HeartSvg } from "../imgs/SVG/heart.svg";
 
@@ -49,14 +59,51 @@ const Header = (props) => {
             alt="avatar"
           />
           <span className={style["user-nav__user-name"]}>Tim</span>
-          <UserDropbox />
+          <UserDropbox action={props.toggleDashboardModal} />
+          <Dashboard
+            showModal={props.showDashboard}
+            closeModalAction={props.toggleDashboardModal}
+            bgImg={dashboardBg}
+          >
+            <div className={dashboardStyle.user}>
+              <img
+                className={dashboardStyle.user__avatar}
+                src={user}
+                alt="user avatar"
+              />
+              <div className={dashboardStyle.user__info}>
+                <h2 className={dashboardStyle.user__heading}>Tim</h2>
+                <p className={dashboardStyle.user__description}>
+                  YOYOOYOYOYOYOOOOOOOO
+                </p>
+              </div>
+            </div>
+            <div className={dashboardStyle.imgs}>
+              <img
+                className={dashboardStyle["imgs--1"]}
+                src={photo1}
+                alt="user photo 1"
+              />
+              <img
+                className={dashboardStyle["imgs--2"]}
+                src={photo2}
+                alt="user photo 2"
+              />
+            </div>
+          </Dashboard>
         </div>
       </nav>
     </header>
   );
 };
 
-export default connect(null, {
+const mapStateToProps = ({ modals: { showDashboard } }) => ({
+  showDashboard,
+});
+
+export default connect(mapStateToProps, {
   searchVideos,
   addTerm,
+  toggleDashboardModal,
+  toggleFavoriteModal,
 })(Header);

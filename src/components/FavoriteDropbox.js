@@ -1,8 +1,15 @@
 import React from "react";
 import Dropbox from "./Dropbox";
-import { clearFavorites, changeSelected } from "../actions";
+import DeleteModal from "./Modal";
+import {
+  clearFavorites,
+  changeSelected,
+  toggleFavoriteModal,
+} from "../actions";
 import { connect } from "react-redux";
 import style from "../sass/components/_header.module.scss";
+import deleteModalStyle from "../sass/components/_deleteModal.module.scss";
+import bgImg from "../imgs/deleteModal.jpg";
 
 class FavoriteDropbox extends Dropbox {
   _errorMessage = "Nothing includes yet!";
@@ -33,11 +40,39 @@ class FavoriteDropbox extends Dropbox {
         <button
           className={style["favorite-dropbox__clear"]}
           onClick={() => {
-            this.props.clearFavorites();
+            this.props.toggleFavoriteModal();
           }}
         >
           Delete all favorites
         </button>
+        <DeleteModal
+          showModal={this.props.showFavoriteModal}
+          closeModalAction={this.props.toggleFavoriteModal}
+          bgImg={bgImg}
+        >
+          <div className={deleteModalStyle.delete}>
+            <p className={deleteModalStyle.delete__content}>
+              Are you sure to clear favorites?
+            </p>
+            <div className={deleteModalStyle.delete__btnGroup}>
+              <button
+                className={deleteModalStyle.delete__btnDelete}
+                onClick={() => {
+                  this.props.clearFavorites();
+                  this.props.toggleFavoriteModal();
+                }}
+              >
+                Delete
+              </button>
+              <button
+                className={deleteModalStyle.delete__btnCancel}
+                onClick={() => this.props.toggleFavoriteModal()}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </DeleteModal>
       </ul>
     );
   };
@@ -57,10 +92,16 @@ class FavoriteDropbox extends Dropbox {
   }
 }
 
-const mapStateToProps = ({ videos: { favorites } }) => ({
+const mapStateToProps = ({
+  videos: { favorites },
+  modals: { showFavoriteModal },
+}) => ({
   favorites,
+  showFavoriteModal,
 });
 
-export default connect(mapStateToProps, { clearFavorites, changeSelected })(
-  FavoriteDropbox
-);
+export default connect(mapStateToProps, {
+  clearFavorites,
+  changeSelected,
+  toggleFavoriteModal,
+})(FavoriteDropbox);

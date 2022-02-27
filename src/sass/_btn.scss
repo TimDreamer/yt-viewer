@@ -1,0 +1,45 @@
+@mixin btn($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+  font-weight: bold;
+  margin: 1rem 0;
+  width: 40%;
+  display: inline-block;
+  position: relative;
+  border: none;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-1.2rem);
+    box-shadow: 0 1rem 2rem rgba(black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:focus,
+  &:active {
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: 2rem;
+    background-color: $bg-color;
+
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+}

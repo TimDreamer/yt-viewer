@@ -1,0 +1,21 @@
+@import "../variables";
+@import "../btn";
+
+.delete {
+  align-self: center;
+  &__content {
+    font-size: 4.8rem;
+    font-weight: bold;
+  }
+  &__btnGroup {
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+  }
+  &__btnDelete {
+    @include btn(rgba(red, 0.7), $color-grey-dark-3);
+  }
+  &__btnCancel {
+    @include btn(rgba(green, 0.7), $color-grey-dark-3);
+  }
+}

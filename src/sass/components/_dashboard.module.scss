@@ -1,0 +1,47 @@
+@import "../variables";
+.user {
+  flex: 0 0 25%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+
+  &__avatar {
+    flex: 0 0 20%;
+    margin-top: 2rem;
+    border-radius: 50%;
+    border: 1rem solid $color-primary;
+  }
+  &__info {
+    text-align: center;
+  }
+  &__heading {
+    font-size: 3.2rem;
+    font-weight: bold;
+  }
+  &__description {
+    text-align: left;
+    font-size: 1.8rem;
+  }
+}
+
+.imgs {
+  flex: 0 0 60%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: end;
+
+  &--1,
+  &--2 {
+    display: block;
+    width: 45%;
+    border-radius: 100px;
+  }
+  &--1 {
+  }
+  &--2 {
+  }
+}

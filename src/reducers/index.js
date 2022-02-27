@@ -11,6 +11,8 @@ import {
   MAX_SEARCH_TERMS,
   INIT_PAGE,
   CHANGE_CURSLIDE,
+  TOGGLE_DASHBOARD_MODAL,
+  TOGGLE_FAVORITE_MODAL,
 } from "../config";
 
 const videoReducer = (
@@ -68,8 +70,8 @@ const miscReducer = (
   state = {
     selected: null,
     page: INIT_PAGE,
-    video_per_page: VIDEOS_PER_PAGE,
     curSlide: 0,
+    video_per_page: VIDEOS_PER_PAGE,
   },
   action
 ) => {
@@ -94,7 +96,31 @@ const miscReducer = (
   }
 };
 
+const modalReducer = (
+  state = {
+    showDashboard: false,
+    showFavoriteModal: false,
+  },
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_DASHBOARD_MODAL:
+      return {
+        ...state,
+        showDashboard: !state.showDashboard,
+      };
+    case TOGGLE_FAVORITE_MODAL:
+      return {
+        ...state,
+        showFavoriteModal: !state.showFavoriteModal,
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   videos: videoReducer,
   misc: miscReducer,
+  modals: modalReducer,
 });
