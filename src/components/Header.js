@@ -86,12 +86,12 @@ const Header = (props) => {
               <img
                 className={dashboardStyle["imgs--1"]}
                 src={photo1}
-                alt="user photo 1"
+                alt="user 1"
               />
               <img
                 className={dashboardStyle["imgs--2"]}
                 src={photo2}
-                alt="user photo 2"
+                alt="user 2"
               />
             </div>
           </Dashboard>

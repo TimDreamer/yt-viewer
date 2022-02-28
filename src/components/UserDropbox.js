@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Dropbox from "./Dropbox";
 import style from "../sass/components/_header.module.scss";
 import { ReactComponent as UserSvg } from "../imgs/SVG/user.svg";
@@ -19,10 +20,10 @@ class UserDropbox extends Dropbox {
         key={idx}
         onClick={() => (idx === 0 ? this.props.action() : undefined)}
       >
-        <a href="#" className={style["user-dropbox__link"]}>
+        <Link to="/" className={style["user-dropbox__link"]}>
           <SVG.icon className={style["user-dropbox__icon"]} />
           <span>{SVG.text}</span>
-        </a>
+        </Link>
       </li>
     ));
 

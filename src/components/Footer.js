@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import style from "../sass/components/_footer.module.scss";
 
 const Footer = () => {
@@ -7,9 +8,9 @@ const Footer = () => {
   ) => {
     return links.map((desp, idx) => (
       <li className={style.nav__item} key={idx}>
-        <a href="#" className={style.nav__link}>
+        <Link to="/" className={style.nav__link}>
           {desp}
-        </a>
+        </Link>
       </li>
     ));
   };
