@@ -38,6 +38,9 @@ body {
 
 .main {
   max-width: 80%;
+  @include respond(tab-port) {
+    max-width: 95%;
+  }
   margin: 4vw auto;
   background-color: #fff;
   border-radius: 1rem;

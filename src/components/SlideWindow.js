@@ -35,6 +35,7 @@ class SlideWindow extends BaseView {
           idx === this.props.curSlide && style["dots__dot--active"]
         }`}
         key={idx}
+        onClick={() => this._change(idx)}
       ></button>
     ));
   };

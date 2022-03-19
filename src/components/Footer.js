@@ -19,7 +19,7 @@ const Footer = () => {
     <footer className={style.footer}>
       <ul className={style.nav}>{_generateLinkMarkup()}</ul>
       <p className={style.copyright}>
-        &copy; Copyright 2020 by website practice
+        &copy; Copyright 2022 by website practice
       </p>
     </footer>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 import {
   searchVideos,
@@ -22,12 +22,16 @@ import { ReactComponent as SearchSvg } from "../imgs/SVG/magnifying-glass.svg";
 import { ReactComponent as HeartSvg } from "../imgs/SVG/heart.svg";
 
 const Header = (props) => {
+  useLayoutEffect(() => {
+    props.searchVideos("Calliope mv");
+  }, [props]);
+
   const inputRef = useRef();
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const term = inputRef.current.value;
-    if (term.trim().length === 0) return;
+    const term = inputRef.current.value.trim();
+    if (term.length === 0) return;
 
     console.log(term);
     props.searchVideos(term);

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////
 // youtube api
-export const KEY = "AIzaSyCLjiehklxijrYgDVmsZPlSqZ48Wtqs3r0";
+export const KEY = process.env.REACT_APP_KEY;
 export const MAX_SEARCH_RESULTS = 50;
 
 ////////////////////////////////////////////
